@@ -5,38 +5,45 @@ on:
       - main
 
 jobs:
+  # --- FIRST BATCH ---
   extract1:
     runs-on: ubuntu-latest
     steps:
       - name: extract1
         run: echo "extract1.py executed"
+
   transform1:
     needs: extract1
     runs-on: ubuntu-latest
     steps:
       - name: transform1
         run: echo "transform1.py executed"
+
   load1:
     needs: transform1
     runs-on: ubuntu-latest
     steps:
       - name: load1
         run: echo "load1.py executed"
-  extract1:
-    needs: transform1
-    runs-on: ubuntu-latest
-    steps:
-      - name: extract1
-        run: echo "extract1.py executed "
-  transform1:
+
+  # --- SECOND BATCH ---
+  extract2:
     needs: load1
     runs-on: ubuntu-latest
     steps:
-      - name: transform1
-        run: echo "transform1.py executed "
-  load1:
-    needs: [extract1, transform1]
+      - name: extract2
+        run: echo "extract1.py executed"
+
+  transform2:
+    needs: extract2
     runs-on: ubuntu-latest
     steps:
-      - name: load1
-        run: echo "load1.py executed "
+      - name: transform2
+        run: echo "transform1.py executed"
+
+  load2:
+    needs: transform2
+    runs-on: ubuntu-latest
+    steps:
+      - name: load2
+        run: echo "load1.py executed"
