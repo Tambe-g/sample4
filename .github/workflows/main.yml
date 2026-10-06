@@ -1,5 +1,4 @@
-name: ETL PIPELINE
-
+name: etlpipeline
 on:
   push:
     branches:
@@ -10,34 +9,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: job1
-        run: print("job 1 executed")
+        run: echo("job 1 executed")
   job2:
     needs: job1
     runs-on: ubuntu-latest
     steps:
       - name: job2
-        run: print("job 2 executed ")
+        run: echo("job 2 executed ")
   job3:
     needs: job1
     runs-on: ubuntu-latest
     steps:
       - name: job3
-        run: print("job 3 executed ")
+        run: echo("job 3 executed ")
   job4:
     needs: job2
     runs-on: ubuntu-latest
     steps:
       - name: job4
-        run: print("job 4 executed ")
+        run: echo("job 4 executed ")
   job5:
     needs: job3
     runs-on: ubuntu-latest
     steps:
       - name: job5
-        run: print("job 5 executed ")
+        run: echo("job 5 executed ")
   job6:
     needs: [job4, job5]
     runs-on: ubuntu-latest
     steps:
       - name: job6
-        run: print("job 6 executed ")
+        run: echo("job 6 executed ")
