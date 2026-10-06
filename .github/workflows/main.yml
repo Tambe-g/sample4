@@ -5,38 +5,38 @@ on:
       - main
 
 jobs:
-  job1:
+  extract:
     runs-on: ubuntu-latest
     steps:
-      - name: job1
+      - name: extract
         run: echo "extract.py executed"
-  job2:
-    needs: job1
+  transform:
+    needs: extract
     runs-on: ubuntu-latest
     steps:
-      - name: job2
+      - name: transform
         run: echo "transform.py executed"
-  job3:
-    needs: job1
+  load:
+    needs: extract
     runs-on: ubuntu-latest
     steps:
-      - name: job3
+      - name: load
         run: echo "load.py executed"
-  job4:
-    needs: job2
+  extract:
+    needs: transform
     runs-on: ubuntu-latest
     steps:
-      - name: job4
+      - name: extract
         run: echo "extract.py executed "
-  job5:
-    needs: job3
+  transform:
+    needs: load
     runs-on: ubuntu-latest
     steps:
-      - name: job5
+      - name: transform
         run: echo "transform.py executed "
-  job6:
-    needs: [job4, job5]
+  load:
+    needs: [extract, transform]
     runs-on: ubuntu-latest
     steps:
-      - name: job6
+      - name: load
         run: echo "load.py executed "
